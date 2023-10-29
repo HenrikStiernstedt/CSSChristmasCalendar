@@ -40,13 +40,13 @@ body {
 /* media query */
 @media only screen and (min-width: 576px) {
   .calendar-grid {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 153px; /*repeat(6, 1fr);*/
     grid-template-areas:
-      "title  title  title  day5   day17  day15"
-      "title  title  title  day11  day20  day16"
+      "title  title  title  day24  day24  day15"
+      "title  title  title  day24  day24  day16"
       "title  title  title  day1   day18  day12"
-      "day6   day22  day14  day24  day24  day4  "
-      "day10  day21  day2   day24  day24  day8"
+      "day6   day22  day14  day5   day17  day4  "
+      "day10  day21  day2   day11  day20  day8"
       "day3   day9   day7   day13  day23  day19";
   }
 }
@@ -108,10 +108,19 @@ body {
   transform: rotate(-5deg);
 }
 
+
+
 /* opening/closing doors */
 .calendar-grid .day {
   transform: translate3d(0px, 0px, 0px);
   position: relative;
+  width: 153px;
+  height: 153px;
+}
+
+.calendar-grid .day-24 {
+  width: 322px;
+  height: 322px;
 }
 
 .calendar-grid input {
@@ -138,16 +147,17 @@ body {
 .calendar-grid .door {
   width: 100%;
   transform-style: preserve-3d;
-  transition: all 300ms;
-  border: 2px dashed rgba(0, 0, 0, 0.2);
+  transition: all 500ms;
+  /*border: 2px dashed rgba(0, 0, 0, 0.2); */
+  box-shadow: 0px 0px 0px 2px #36190242 inset;
   border-radius: 0.6rem;
   transform-origin: 0% 50%;
 }
 
 .calendar-grid .door div {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 153px;
+  width: 153px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 0.4rem;
@@ -158,6 +168,11 @@ body {
   font-size: 3em;
   font-weight: bold;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.calendar-grid .day-24 .door div {
+  width: 322px;
+  height: 322px;
 }
 
 .calendar-grid .door .back {
@@ -265,7 +280,7 @@ body {
   border-radius: 0.6rem;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 300ms ease-in-out;
+  /*transition: opacity 300ms ease-in-out;*/
 }
 
 .calendar-grid .inside-empty {
@@ -383,7 +398,6 @@ footer a {
   z-index: 19;
 }
 .calendar-grid .day-9 .inside {
-  background: url(assets/1.png);
   background-size: cover;
 }
 .calendar-grid .day-10 {
@@ -399,15 +413,17 @@ footer a {
   z-index: 13;
 }
 
+.calendar-grid .day-13 .door {
+  background: url(assets/13c.png);  
+  grid-area: day13;
+  z-index: 18;
+}
+
 .calendar-grid .day-13 .inside {
   background: url(assets/13.png);
   background-size: cover;
 }
 
-.calendar-grid .day-13 {
-  grid-area: day13;
-  z-index: 18;
-}
 .calendar-grid .day-14 {
   grid-area: day14;
   z-index: 8;
@@ -431,6 +447,10 @@ footer a {
 .calendar-grid .day-19 {
   grid-area: day19;
   z-index: 3;
+}
+.calendar-grid .day-19 .inside {
+  background: url(assets/19.png);
+  background-size: cover;
 }
 .calendar-grid .day-20 {
   grid-area: day20;
