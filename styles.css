@@ -23,7 +23,7 @@ body {
   grid-gap: 1rem;
 
   transform: translate3d(0px, 0px, 0px);
-  background: url(assets/room4.png);
+  /*background: url(assets/room4.png);*/
 
   grid-template-areas:
     "title  title  title"
@@ -57,14 +57,36 @@ body {
   height: 1024px;
 }
 
+.calendar-overlay .part {
+  position: absolute;
+  z-index: 1;
+  width: 512px;
+  height: 512px;
+}
+
+.calendar-overlay .topleft {
+  background: url(assets/topleft.png);
+  top: 0px;
+}
+
+.calendar-overlay .topright {
+  background: url(assets/topright.png);
+  right: 0px;
+}
+
 .calendar-overlay .bottomright {
   background: url(assets/bottomright.png);
+  bottom: 0px;
+  right: 0px
+}
+
+.calendar-overlay .bottomleft {
+  background: url(assets/bottomleft.png);
+  bottom: 0px;
+  ;
 }
 
 
-.calendar-overlay div {
-  z-index: 50;
-}
 
 /* title */
 .calendar-grid .title {
