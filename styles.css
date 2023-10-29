@@ -13,8 +13,9 @@ body {
 /* calendar layout */
 .calendar-grid {
   display: grid;
-  width: 94%;
-  max-width: 900px;
+  width: 1000px;
+  height: 1000px;
+  padding: 12px;
   margin: 3% auto 2rem auto;
 
   grid-template-columns: repeat(3, 1fr);
@@ -22,6 +23,7 @@ body {
   grid-gap: 1rem;
 
   transform: translate3d(0px, 0px, 0px);
+  background: url(assets/room4.png);
 
   grid-template-areas:
     "title  title  title"
@@ -47,6 +49,21 @@ body {
       "day10  day21  day2   day24  day24  day8"
       "day3   day9   day7   day13  day23  day19";
   }
+}
+
+.calendar-overlay {
+  position: absolute;
+  width: 1024px;
+  height: 1024px;
+}
+
+.calendar-overlay .bottomright {
+  background: url(assets/bottomright.png);
+}
+
+
+.calendar-overlay div {
+  z-index: 50;
 }
 
 /* title */
@@ -365,6 +382,10 @@ footer a {
   grid-area: day9;
   z-index: 19;
 }
+.calendar-grid .day-9 .inside {
+  background: url(assets/1.png);
+  background-size: cover;
+}
 .calendar-grid .day-10 {
   grid-area: day10;
   z-index: 14;
@@ -377,6 +398,12 @@ footer a {
   grid-area: day12;
   z-index: 13;
 }
+
+.calendar-grid .day-13 .inside {
+  background: url(assets/13.png);
+  background-size: cover;
+}
+
 .calendar-grid .day-13 {
   grid-area: day13;
   z-index: 18;
