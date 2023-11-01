@@ -179,16 +179,17 @@ body {
 }
 
 .calendar-grid .door .back {
-  background: linear-gradient(to right, #384044, #2e454f);
+  background: linear-gradient(to right, #384044, #042e41);
   transform: rotateY(-180deg);
 }
 
 .calendar-grid label:hover .door {
   border-color: #10303c;
+  box-shadow: 0px 0px 0px 3px #49220142 inset;
 }
 
 .calendar-grid :checked + .door {
-  transform: rotateY(-180deg);
+  transform: rotateY(-100deg);
   border-color: #10303c;
   border-style: solid;
 }
