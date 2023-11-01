@@ -81,7 +81,7 @@ body {
 }
 
 .calendar-overlay .bottomright {
-  background: url(assets/bottomright2.png);
+  background: url(assets/bottomright.png);
   bottom: 0px;
   right: 0px
 }
@@ -92,39 +92,22 @@ body {
   ;
 }
 
-
-
-
-
 /* opening/closing doors */
 .calendar-grid .day {
   /*transform: translate3d(0px, 0px, 0px);*/
   position: absolute;
   width: 153px;
   height: 153px;
-}
-
-.calendar-grid .day-13 {
   width: 153px;
   height: 153px;
-  position: absolute;
-  top: 858px;
-  left: 518px;
 }
 
-.calendar-grid .day-19 {
-  width: 153px;
-  height: 153px;
-  top: 859px;
-  left: 859px;
+.calendar-grid .day {
+  position: absolute;
 }
 
-.calendar-grid .day-24 {
-  width: 322px;
-  height: 322px;
-  position: absolute;
-  top: 12px;
-  left: 524px; /* 512 + 12 */
+.calendar-grid .day .door {
+  background-size: cover;
 }
 
 .calendar-grid input {
@@ -382,9 +365,16 @@ footer a {
   z-index: 16;
 }
 .calendar-grid .day-3 {
-  grid-area: day3;
   z-index: 23;
+  top: 688px;   /* 176 */
+  left: 518px;  /* 6 */
+
+  .door {
+    background: url(assets/3c.png);
+    background-size: cover;
+  }
 }
+
 .calendar-grid .day-4 {
   grid-area: day4;
   z-index: 15;
@@ -423,10 +413,13 @@ footer a {
   z-index: 13;
 }
 
-.calendar-grid .day-13 .door {
-  background: url(assets/13c.png);  
-  grid-area: day13;
-  z-index: 18;
+.calendar-grid .day-13 {
+  top: 858px;
+  left: 518px;
+  .door {
+    background: url(assets/13c.png);  
+    z-index: 18;
+  }
 }
 
 .calendar-grid .day-14 {
@@ -450,13 +443,12 @@ footer a {
   z-index: 20;
 }
 .calendar-grid .day-19 {
-  grid-area: day19;
+  top: 859px;
+  left: 859px;
   z-index: 3;
-}
-.calendar-grid .day-19 .door {
-  grid-area: day19;
-  background: url(assets/19c.png);
-  z-index: 3;
+  .door {
+    background: url(assets/19c.png);
+  }
 }
 
 .calendar-grid .day-20 {
@@ -476,12 +468,14 @@ footer a {
   z-index: 5;
 }
 .calendar-grid .day-24 {
-  grid-area: day24;
+  width: 322px;
+  height: 322px;
+  top: 12px;
+  left: 524px; /* 512 + 12 */
   z-index: 17;
-}
-.calendar-grid .day-24 .door {
-  background: url(assets/24c.png);
-  background-size: cover;
+  .door {
+    background: url(assets/24c.png);
+  }
 }
 
 /*@media only screen and (min-width: 576px) {*/
