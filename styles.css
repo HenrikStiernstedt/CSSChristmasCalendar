@@ -12,6 +12,9 @@ body {
 
 /* calendar layout */
 .calendar-grid {
+
+  user-select: none;
+
 /*  display: grid;*/
   display: flex;
   width: 1024px;
@@ -155,6 +158,11 @@ body {
   border-radius: 0.6rem;
   transform-origin: 0% 50%;
 }
+/*
+.calendar-grid .inside {
+  pointer-events: none;
+}
+*/
 
 .calendar-grid .door div {
   position: absolute;
