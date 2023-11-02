@@ -337,7 +337,12 @@ footer a {
 
 /* Calendar day positions and z-indexes */
 .calendar-grid .day-1 {
-  grid-area: day1;
+  top: 1716px;
+  left: 1036px;
+  .door {
+    background: url(assets/xl/1c.png);  
+    z-index: 18;
+  }
   z-index: 11;
 }
 .calendar-grid .day-2 {
@@ -401,8 +406,8 @@ footer a {
 }
 
 .calendar-grid .day-13 {
-  top: 1716px;
-  left: 1036px;
+  top: calc(1024px + 365px);
+  left: calc(1024px + 362px);
   .door {
     background: url(assets/xl/13c.png);  
     z-index: 18;
