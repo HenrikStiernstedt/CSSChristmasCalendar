@@ -14,3 +14,7 @@ Based on a css calander by Johnny Fekete, but not much is preserved.
 
 [MIT](https://github.com/johnnyfekete/CSSChristmasCalendar/blob/main/LICENSE)
 
+
+## Todo
+
+Testa <link rel="preload" href="kalender.jpg" as="image" crossorigin="anonymous" />
