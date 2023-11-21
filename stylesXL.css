@@ -140,7 +140,10 @@ body {
   height: 250px;
 }
 
-
+.calendar-grid .day-4 .door div {
+  width: 200px;
+  height: 250px;
+}
 
 .calendar-grid .day-24 .door div {
   width: 520px;
@@ -254,8 +257,13 @@ body {
   left: 0;
   border-radius: 0.6rem;
   overflow: hidden;
-  opacity: 0;
+  opacity: 0.3;
   /*transition: opacity 300ms ease-in-out;*/
+
+  
+  border-color: #10303c30;
+  border-style: solid;
+  
 }
 
 .calendar-grid .inside-empty {
@@ -361,8 +369,17 @@ footer a {
 }
 
 .calendar-grid .day-4 {
-  grid-area: day4;
   z-index: 15;
+  top: calc(1024px + 40px);
+  left: 12px;
+  width: 200px;
+  height: 250px;
+  .door {
+    background: url(assets/xl/4c.png);  
+    width: 200px;
+    height: 250px;
+
+  }
 }
 
 .calendar-grid .day-5 {
