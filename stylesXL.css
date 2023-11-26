@@ -29,8 +29,9 @@ body {
 .calendar-container {
   display: flex;
   justify-content: center;
+  width: 2048px;
+  height: 2048px;
 }
-
 
 .calendar-grid {
   width: 2048px;
