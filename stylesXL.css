@@ -26,9 +26,13 @@ body {
   /*background: url(assets/room4.png);*/
 
 }
+.calendar-container {
+  display: flex;
+  justify-content: center;
+}
+
 
 .calendar-grid {
-  position: absolute;
   width: 2048px;
   height: 2048px;
   /*background: url(assets/xl/full2048.png);*/
