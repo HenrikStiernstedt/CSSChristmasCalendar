@@ -5,15 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christmas Calendar</title>
   
+  <!--
   <link rel="preload" href="assets/xl/topleft.png" as="image" crossorigin="anonymous" />
   <link rel="preload" href="assets/xl/topright.png" as="image" crossorigin="anonymous" />
   <link rel="preload" href="assets/xl/bottomleft.png" as="image" crossorigin="anonymous" />
   <link rel="preload" href="assets/xl/bottomright.png" as="image" crossorigin="anonymous" />
-  
+  -->
+
   <meta name="description" content="A silly christmas calendar.">
   <link rel="icon" type="image/png" href="./assets/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="./assets/favicon-16x16.png" sizes="16x16" />
   <link rel="stylesheet" href="stylesXL.css"> 
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var dayDivs = document.querySelectorAll('.day');
+
+        // Function to get the list of opened doors from the cookie
+        function getOpenedDoors() {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.startsWith("openedDoors=")) {
+            return cookie.substring("openedDoors=".length);
+          }
+        }
+        return "";
+      }
+
+      function handleClick (event) {
+        // Add the "opening" class to trigger the animation
+        var dayDiv = event.currentTarget;
+
+        var dayValue = parseInt(dayDiv.dataset.day, 10);
+        
+        // Create a Date object for December 2023
+        var december2023 = new Date(2023, 11, dayValue); // Note: Months are zero-based
+
+        // Get the current date
+        var currentDate = new Date();
+        //currentDate = new Date(2023, 11, 31); // DEBUG. fake it so that all doors can be opened.
+
+        // Compare the dates
+        if (december2023 < currentDate) {
+          console.log('The date has passed.');
+        } else {
+          console.log('The date ' + december2023 + ' is still in the future. Today is ' + currentDate);
+          dayDiv.classList.add('not-allowed');
+          setTimeout(function () {
+            dayDiv.classList.remove('not-allowed');
+          }, 1000);
+          return;
+        }
+
+        dayDiv.classList.add('opening');
+
+        dayDiv.removeEventListener('click', handleClick);
+
+        //console.log(getOpenedDoors());
+        document.cookie = "openedDoors=" + (getOpenedDoors() + ',' + dayValue) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+        // After the animation completes, remove the "door" div
+        setTimeout(function () {
+          console.log("timeout");
+          console.log(dayDiv);
+
+          var doorLabel = dayDiv.querySelector('label');
+          if (doorLabel) {
+            console.log(doorLabel);
+            //doorLabel.remove('input');
+            //doorLabel.remove('.door');
+          }
+
+        }, 3000); // Assuming the animation duration is 3 seconds
+      };
+      
+      dayDivs.forEach(function (dayDiv) {
+        dayDiv.addEventListener('click', handleClick);
+      });
+
+      // Function to open doors based on the cookie
+      function openDoorsFromCookie() {
+        var openedDoors = getOpenedDoors();
+        var dayDivs = document.querySelectorAll('.day');
+
+        dayDivs.forEach(function (dayDiv) {
+          var dayValue = dayDiv.dataset.day;
+          if (openedDoors.includes(dayValue)) {
+            // Open the door (remove the label with the door)
+            dayDiv.classList.add('opening');
+            dayDiv.removeEventListener('click', handleClick);
+
+            var doorLabel = dayDiv.querySelector('label');
+            if (doorLabel) {
+            //  dayDiv.removeChild(doorLabel);
+            }
+          }
+        });
+      }
+
+      // Call the function to open doors from the cookie on page load
+      openDoorsFromCookie();
+
+
+    });
+  </script>
 
 </head>
 <body>
@@ -32,7 +128,7 @@
       <div class="title">
         <h1><span class="title-1">R&D</span><span class="title-2">Christmas</span><span class="title-3">Calendar</span></h1>
       </div>
-      <div class="day day-1">
+      <div class="day day-1" data-day=1>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -42,7 +138,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-2">
+      <div class="day day-2" data-day=2>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -53,7 +149,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-3">
+      <div class="day day-3"  data-day=3>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -64,7 +160,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-4">
+      <div class="day day-4"  data-day=4>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -75,7 +171,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-5">
+      <div class="day day-5"  data-day=5>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -86,7 +182,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-6">
+      <div class="day day-6" data-day=6>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -97,7 +193,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-7">
+      <div class="day day-7" data-day=7>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -107,7 +203,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-8">
+      <div class="day day-8" data-day=8>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -117,7 +213,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-9">
+      <div class="day day-9" data-day=9>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -128,7 +224,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-10">
+      <div class="day day-10" data-day=10>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -138,7 +234,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-11">
+      <div class="day day-11" data-day=11>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -148,7 +244,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-12">
+      <div class="day day-12" data-day=12>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -158,7 +254,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-13">
+      <div class="day day-13" data-day=13>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -169,7 +265,7 @@
           </div>
         </label>
       </div>
-      <div class="day day-14">
+      <div class="day day-14" data-day=14>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -179,7 +275,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-15">
+      <div class="day day-15" data-day=15>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -189,7 +285,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-16">
+      <div class="day day-16" data-day=16>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -199,7 +295,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-17">
+      <div class="day day-17" data-day=17>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -209,7 +305,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-18">
+      <div class="day day-18" data-day=18>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -219,7 +315,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-19">
+      <div class="day day-19" data-day=19>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -229,7 +325,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-20">
+      <div class="day day-20" data-day=20>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -239,7 +335,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-21">
+      <div class="day day-21" data-day=21>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -249,7 +345,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-22">
+      <div class="day day-22" data-day=22>
           <input type="checkbox"/>
           <div class="door">
             <div class="front">22</div>
@@ -258,7 +354,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-23">
+      <div class="day day-23" data-day=23>
         <label>
           <input type="checkbox"/>
           <div class="door">
@@ -268,7 +364,7 @@
           <div class="inside"></div>
         </label>
       </div>
-      <div class="day day-24">
+      <div class="day day-24" data-day=24>
         <label>
           <input type="checkbox"/>
           <div class="door">
