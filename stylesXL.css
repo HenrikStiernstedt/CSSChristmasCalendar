@@ -115,8 +115,8 @@ body {
   transform-style: preserve-3d;
   transition: all 500ms;
   /*border: 2px dashed rgba(0, 0, 0, 0.2); */
-  /*box-shadow: 0px 0px 0px 2px #36190242 inset;*/
-  box-shadow: 0px 0px 0px 2px #ea08ff inset;
+  box-shadow: 0px 0px 0px 2px #36190242 inset;
+  /*box-shadow: 0px 0px 0px 2px #ea08ff inset;*/
   border-radius: 0.6rem;
   transform-origin: 0% 50%;
 }
@@ -494,7 +494,17 @@ footer a {
 .calendar-grid .day-9 {
   top: calc(1024px + 6px);
   left: calc(1024px + 700px);
+
+  top: calc(1024px + 0px);
+  left: calc(1024px + 725px);
+  width: 280px;
+  height: 390px;
   z-index: 19;
+
+  .door div {
+    width: 280px;
+    height: 390px;
+  }
 }
 
 .calendar-grid .day-10 {
@@ -558,12 +568,22 @@ footer a {
   }
 }
 .calendar-grid .day-17 {
-  grid-area: day17;
-  z-index: 9;
+  top: 700px;
+  left: calc(1024px + 26px);
+  z-index: 23;
 }
 .calendar-grid .day-18 {
   grid-area: day18;
   z-index: 20;
+  left: 940px;
+  top: 440px;
+  height: 200px;
+  width: 200px;
+
+  .door div {
+    height: 200px;
+    width: 200px;
+  }
 }
 .calendar-grid .day-19 {
   top: 1716px;
@@ -577,17 +597,27 @@ footer a {
 .calendar-grid .day-20 {
   grid-area: day20;
   z-index: 10;
+  top: calc(1024px + 419px);
+  left: 709px;
+  width: 180px;
+  height: 306px;
+
+  .door div {
+    width: 180px;
+    height: 306px;
+  }
 }
 .calendar-grid .day-21 {
-  grid-area: day21;
   z-index: 2;
+  left: 60px;
+  top: 300px;
 }
 
 .calendar-grid .day-22 {
-
   z-index: 2;
+  top: calc(1024px + 692px);
+  left: 370px;
 }
-
 
 .calendar-grid .day-25 {
   top: 424px;
