@@ -1,6 +1,8 @@
 assets/work/*
+work/old/*
 assets/*/*.xcf
 
 assets/bottomright3.png
 assets/bottomright2.png
 assets/bottomright4.png
+work/*
