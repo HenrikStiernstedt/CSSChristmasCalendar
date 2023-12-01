@@ -532,6 +532,10 @@ footer a {
     width: 280px;
     height: 390px;
   }
+
+  .door {
+    background: url(assets/xl/9c.png); 
+  }
 }
 
 .calendar-grid .day-10 {
