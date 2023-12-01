@@ -91,7 +91,7 @@
 
         dayDivs.forEach(function (dayDiv) {
           var dayValue = dayDiv.dataset.day;
-          if (openedDoors.includes(dayValue)) {
+          if (openedDoors.split(',').includes(dayValue)) {
             // Open the door (remove the label with the door)
             dayDiv.classList.add('opening');
             dayDiv.removeEventListener('click', handleClick);
@@ -153,7 +153,7 @@
         <label>
           <input type="checkbox"/>
           <div class="door">
-            <div class="front">3</div>
+            <div class="front">3<br/><br/></div>
             <div class="back"></div>
           </div>
           <div class="inside">
@@ -186,7 +186,7 @@
         <label>
           <input type="checkbox"/>
           <div class="door">
-            <div class="front">6</div>
+            <div class="front">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6</div>
             <div class="back"></div>
           </div>
           <div class="inside">
@@ -258,7 +258,7 @@
         <label>
           <input type="checkbox"/>
           <div class="door">
-            <div class="front">13</div>
+            <div class="front"><br/><br/>13</div>
             <div class="back"></div>
           </div>
           <div class="inside">
@@ -329,7 +329,7 @@
         <label>
           <input type="checkbox"/>
           <div class="door">
-            <div class="front">20</div>
+            <div class="front"><br/><br/>20&nbsp;</div>
             <div class="back"></div>
           </div>
           <div class="inside"></div>
