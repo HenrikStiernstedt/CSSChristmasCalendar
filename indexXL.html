@@ -61,7 +61,7 @@
       dayDiv.removeEventListener('click', handleClick);
 
       //console.log(getOpenedDoors());
-      //document.cookie = "openedDoors=" + (getOpenedDoors() + ',' + dayValue) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      document.cookie = "openedDoors=" + (getOpenedDoors() + ',' + dayValue) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
 
       // After the animation completes, remove the "door" div
       setTimeout(function () {
