@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Christmas Calendar</title>
+  <title>Henke's Christmas Calendar</title>
   
   <!--
   <link rel="preload" href="assets/xl/topleft.png" as="image" crossorigin="anonymous" />
@@ -18,115 +18,137 @@
   <link rel="stylesheet" href="stylesXL.css"> 
 
   <script>
+
+    // Function to get the list of opened doors from the cookie
+    function getOpenedDoors() {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.startsWith("openedDoors=")) {
+          return cookie.substring("openedDoors=".length);
+        }
+      }
+      return "";
+    }
+
+    function handleClick (event) {
+      // Add the "opening" class to trigger the animation
+      var dayDiv = event.currentTarget;
+
+      var dayValue = parseInt(dayDiv.dataset.day, 10);
+      
+      // Create a Date object for December 2023
+      var december2023 = new Date(2023, 11, dayValue); // Note: Months are zero-based
+
+      // Get the current date
+      var currentDate = new Date();
+      //currentDate = new Date(2023, 11, 31); // DEBUG. fake it so that all doors can be opened.
+
+      // Compare the dates
+      if (december2023 < currentDate) {
+        console.log('The date has passed.');
+      } else {
+        console.log('The date ' + december2023 + ' is still in the future. Today is ' + currentDate);
+        dayDiv.classList.add('not-allowed');
+        setTimeout(function () {
+          dayDiv.classList.remove('not-allowed');
+        }, 1000);
+        return;
+      }
+
+      dayDiv.classList.add('opening');
+
+      dayDiv.removeEventListener('click', handleClick);
+
+      //console.log(getOpenedDoors());
+      //document.cookie = "openedDoors=" + (getOpenedDoors() + ',' + dayValue) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+      // After the animation completes, remove the "door" div
+      setTimeout(function () {
+        console.log("timeout");
+        console.log(dayDiv);
+
+        var doorLabel = dayDiv.querySelector('label');
+        if (doorLabel) {
+          console.log(doorLabel);
+          //doorLabel.remove('input');
+          //doorLabel.remove('.door');
+        }
+
+      }, 3000); // Assuming the animation duration is 3 seconds
+    };
+
+
     document.addEventListener('DOMContentLoaded', function () {
       var dayDivs = document.querySelectorAll('.day');
 
-        // Function to get the list of opened doors from the cookie
-        function getOpenedDoors() {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i].trim();
-          if (cookie.startsWith("openedDoors=")) {
-            return cookie.substring("openedDoors=".length);
-          }
-        }
-        return "";
-      }
-
-      function handleClick (event) {
-        // Add the "opening" class to trigger the animation
-        var dayDiv = event.currentTarget;
-
-        var dayValue = parseInt(dayDiv.dataset.day, 10);
+      var htmlCode = `
+          <div class="part topleft"></div>
+          <div class="part topright"></div>
+          <div class="part bottomleft"></div>
+          <div class="part bottomright"></div>
+        `;
+        var calendarOverlay = document.querySelector('.calendar-overlay');
+        calendarOverlay.innerHTML = htmlCode;
         
-        // Create a Date object for December 2023
-        var december2023 = new Date(2023, 11, dayValue); // Note: Months are zero-based
 
-        // Get the current date
-        var currentDate = new Date();
-        //currentDate = new Date(2023, 11, 31); // DEBUG. fake it so that all doors can be opened.
-
-        // Compare the dates
-        if (december2023 < currentDate) {
-          console.log('The date has passed.');
-        } else {
-          console.log('The date ' + december2023 + ' is still in the future. Today is ' + currentDate);
-          dayDiv.classList.add('not-allowed');
-          setTimeout(function () {
-            dayDiv.classList.remove('not-allowed');
-          }, 1000);
-          return;
-        }
-
-        dayDiv.classList.add('opening');
-
-        dayDiv.removeEventListener('click', handleClick);
-
-        //console.log(getOpenedDoors());
-        document.cookie = "openedDoors=" + (getOpenedDoors() + ',' + dayValue) + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-
-        // After the animation completes, remove the "door" div
-        setTimeout(function () {
-          console.log("timeout");
-          console.log(dayDiv);
-
-          var doorLabel = dayDiv.querySelector('label');
-          if (doorLabel) {
-            console.log(doorLabel);
-            //doorLabel.remove('input');
-            //doorLabel.remove('.door');
-          }
-
-        }, 3000); // Assuming the animation duration is 3 seconds
-      };
       
       dayDivs.forEach(function (dayDiv) {
         dayDiv.addEventListener('click', handleClick);
       });
-
-      // Function to open doors based on the cookie
-      function openDoorsFromCookie() {
-        var openedDoors = getOpenedDoors();
-        var dayDivs = document.querySelectorAll('.day');
-
-        dayDivs.forEach(function (dayDiv) {
-          var dayValue = dayDiv.dataset.day;
-          if (openedDoors.split(',').includes(dayValue)) {
-            // Open the door (remove the label with the door)
-            dayDiv.classList.add('opening');
-            dayDiv.removeEventListener('click', handleClick);
-
-            var doorLabel = dayDiv.querySelector('label');
-            if (doorLabel) {
-            //  dayDiv.removeChild(doorLabel);
-            }
-          }
-        });
-      }
-
+      setTimeout(imageLoaded, 1000);
       // Call the function to open doors from the cookie on page load
-      openDoorsFromCookie();
-
-
     });
+
+    // Function to open doors based on the cookie
+    function openDoorsFromCookie() {
+      var openedDoors = getOpenedDoors();
+      var dayDivs = document.querySelectorAll('.day');
+
+      dayDivs.forEach(function (dayDiv) {
+        var dayValue = dayDiv.dataset.day;
+        if (openedDoors.split(',').includes(dayValue)) {
+          // Open the door (remove the label with the door)
+          dayDiv.classList.add('opening');
+          dayDiv.removeEventListener('click', handleClick);
+
+          var doorLabel = dayDiv.querySelector('label');
+          if (doorLabel) {
+          //  dayDiv.removeChild(doorLabel);
+          }
+        }
+      });
+    }
+
+    function imageLoaded() {
+        
+        var cover = document.querySelectorAll('.calendar-container');
+        cover[0].classList.remove('load-blur', 300);
+
+        openDoorsFromCookie();
+
+      
+    }
   </script>
 
 </head>
 <body>
 
-  <div class="calendar-container">
+  <div class="calendar-container load-blur">
     <div class="calendar-grid">
 
       <div class="calendar-overlay">
+        <!--
         <div class="part topleft"></div>
         <div class="part topright"></div>
         <div class="part bottomleft"></div>
         <div class="part bottomright"></div>
+      -->
       </div>
     
 
       <div class="title">
-        <h1><span class="title-1">R&D</span><span class="title-2">Christmas</span><span class="title-3">Calendar</span></h1>
+        <h1><span class="title-1">Henke's</span><span class="title-2">Christmas</span><span class="title-3">Calendar</span></h1>
       </div>
       <div class="day day-1" data-day=1>
         <label>
