@@ -642,6 +642,10 @@ footer a {
     height: 200px;
     width: 200px;
   }
+
+  .door {
+    background: url(assets/xl/18c.png);  
+  }
 }
 .calendar-grid .day-19 {
   top: 1716px;
@@ -677,6 +681,9 @@ footer a {
 .calendar-grid .day-22 {
   top: calc(1024px + 692px);
   left: 370px;
+  .door {
+    background: url(assets/xl/22c.png);
+  }
 }
 
 .calendar-grid .day-25 {
