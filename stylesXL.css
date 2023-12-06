@@ -64,23 +64,23 @@ body {
 }
 
 .calendar-overlay .topleft {
-  background: url(assets/xl/topleft.webp);
+  background: url(assets/xl/topleft.webp?v=06);
   top: 0px;
 }
 
 .calendar-overlay .topright {
-  background: url(assets/xl/topright.webp);
+  background: url(assets/xl/topright.webp?v=06);
   left: 1024px;
 }
 
 .calendar-overlay .bottomright {
-  background: url(assets/xl/bottomright.webp);
+  background: url(assets/xl/bottomright.webp?v=06);
   top: 1024px;
   left: 1024px
 }
 
 .calendar-overlay .bottomleft {
-  background: url(assets/xl/bottomleft.webp);
+  background: url(assets/xl/bottomleft.webp?v=06);
   top: 1024px;
   ;
 }
@@ -594,7 +594,11 @@ footer a {
 .calendar-grid .day-14 {
   top: calc(1024px + 40px);
   left: 780px;
+  .door {
+    background: url(assets/xl/14c.png);  
+  }
 }
+
 .calendar-grid .day-15 {
   left: calc(1024px + 676px);
   top: 304px;
@@ -610,10 +614,15 @@ footer a {
   height: 150px;
   width: 320px;
 
+  .door {
+    background: url(assets/xl/16c.png);  
+  }
+
   .door div {
     height: 150px;
     width: 320px;
   }
+
 }
 .calendar-grid .day-17 {
   top: 700px;
@@ -660,6 +669,9 @@ footer a {
 .calendar-grid .day-21 {
   left: 60px;
   top: 300px;
+  .door {
+    background: url(assets/xl/21c.png);
+  }
 }
 
 .calendar-grid .day-22 {
